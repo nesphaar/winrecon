@@ -1,157 +1,158 @@
-🐧 linrecon — Linux Recon & Security Inventory
+🪟 winrecon — Windows Recon & Security Inventory
 
-linrecon is a Linux reconnaissance, inventory, and security assessment script designed for security audits, incident response, and post-compromise analysis.
+winrecon is a Windows reconnaissance, inventory, and security assessment tool written in native PowerShell, designed for security audits, incident response, and post-compromise enumeration on modern Windows systems.
 
-It collects system, network, user, service, and security posture data, correlates it with lightweight heuristics, and produces clean, evidence-backed reports in both TXT and HTML formats.
+It is the Windows counterpart to linrecon, applying the same philosophy:
+📎 evidence-based collection,
+🧠 lightweight heuristics,
+📊 clear reporting.
 
 ✨ Key Features
 
-🔍 Comprehensive Linux reconnaissance
+🔍 Comprehensive Windows system reconnaissance
 
-📊 Automated security findings with severity levels
+🛡️ Automated security findings with severity levels
 
-🧾 HTML & TXT reports with indexed evidence
+📄 TXT & HTML reports with indexed evidence
 
-⚙️ Non-intrusive & read-only data collection
+⚙️ Native PowerShell (no external dependencies)
 
-🧠 Practical heuristics (no guessing, evidence-based)
+📦 Automatic ZIP packaging
 
-📦 Automatic report packaging (ZIP / TAR.GZ)
+🔐 Administrator privilege validation
 
-🧠 What linrecon Collects
+🧠 What winrecon Collects
 🖥️ System & Hardware
 
-OS release, kernel, uptime
+Windows version, architecture, boot time
 
-CPU, memory, disks, mounts
+BIOS and system manufacturer info
 
-Virtualization/container detection
+Physical memory and domain membership
 
-BIOS & DMI info (when available)
+💾 Storage
+
+Volumes and partitions
+
+File system types and free space
 
 🌐 Networking
 
-Interfaces, routes, rules
+IP configuration and addresses
 
-Listening TCP/UDP ports
+Listening TCP ports
 
-DNS configuration
-
-NetworkManager / Netplan / ifcfg (where applicable)
+Hosts file inspection
 
 👥 Users & Access
 
-Users, groups, sudoers
+Local users and groups
 
-Login history (last, who)
+Logged-on sessions
 
-SSH configuration & effective settings
+Account status and metadata
 
-⚙️ Services & Jobs
+⚙️ Services & Tasks
 
-systemd services, timers, failed units
+Running Windows services
 
-Cron jobs (system & user)
+Enabled scheduled tasks
 
 🔐 Security Posture
 
-SSH hardening checks
+Windows Firewall profiles
 
-Firewall status (ufw / firewalld / nftables / iptables)
+Antivirus / Defender status (via WMI)
 
-SELinux / AppArmor status
+Recently installed hotfixes
 
-SUID binaries
+RDP exposure
 
-World-writable directories
+SMBv1 protocol status
 
 🧰 Living off the Land (LotL)
 
-Detection of common dual-use tools:
+Detection of common dual-use binaries:
 
-nc, socat, nmap, gcc, python, curl, wget, etc.
+powershell.exe
 
-📦 Software Inventory
+certutil.exe
 
-Installed packages (apt / yum / dnf)
+bitsadmin.exe
 
-Pending updates (heuristic-based)
+curl.exe
 
-Snap, Flatpak, Pip (if present)
+nc.exe, nmap.exe, python.exe, etc.
 
 🚨 Automated Findings Engine
 
-linrecon includes built-in heuristics that generate findings with:
+winrecon includes built-in security heuristics that generate findings with severity labels:
 
 🔴 HIGH
 
 🟠 MEDIUM
 
+🔵 INFO
+
 🟢 OK
 
-🔵 INFO
+Current automated findings include:
+
+RDP (3389) listening exposure
+
+SMBv1 enabled (legacy & vulnerable)
+
+Missing or unregistered Antivirus
+
+Firewall profile status
 
 Each finding:
 
 Is evidence-backed
 
-Links directly to the relevant report section
+Links directly to the relevant section in the HTML report
 
-Avoids assumptions when data is incomplete
-
-Example findings:
-
-SSH PasswordAuthentication enabled
-
-Root SSH login allowed
-
-SSH exposed on all interfaces
-
-Firewall inactive or unclear
-
-Pending system updates
-
-Presence of SUID binaries
-
-LotL tools detected
+Avoids assumptions when data is unavailable
 
 📄 Output Structure
-linrecon_<host>_<timestamp>/
+winrecon_<host>_<timestamp>/
 ├── report.txt        # Full textual report
 ├── report.html       # Interactive HTML report
-├── errors.txt        # Non-fatal command errors
+├── errors.txt        # Non-fatal execution errors
 └── data/
-    ├── 00_os_release.txt
-    ├── 44_listening_tcp_udp.txt
-    ├── 88_sshd_effective.txt
+    ├── 00_os_info.txt
+    ├── 44_listening_ports.txt
+    ├── 81_av_status.txt
     ├── 140_lotl_inventory.txt
     └── ...
 
 
 📦 Automatically packaged as:
 
-.zip (preferred)
-
-.tar.gz (fallback)
+winrecon_<host>_<timestamp>.zip
 
 🚀 Usage
-chmod +x linrecon.sh
-./linrecon.sh
+1️⃣ Open PowerShell as Administrator
+
+This is mandatory for a full assessment.
+
+2️⃣ Run the script
+.\winrecon.ps1
 
 
-Optional output directory:
+The script will:
 
-./linrecon.sh /path/to/output_dir
+Validate admin privileges
 
-🔑 Privileges
+Collect system data
 
-Automatically re-executes with sudo if not run as root
+Generate reports
 
-Preserves original user ownership and permissions
+Create a ZIP archive automatically
 
 🛡️ Design Principles
 
-✅ Read-only, safe by default
+✅ Read-only & non-destructive
 
 ❌ No exploitation
 
@@ -161,7 +162,7 @@ Preserves original user ownership and permissions
 
 📎 Evidence-first reporting
 
-📖 Audit-friendly output
+📖 Audit & IR friendly output
 
 🧪 Intended Use Cases
 
@@ -169,19 +170,19 @@ Preserves original user ownership and permissions
 
 🚑 Incident response
 
-🧰 Blue team investigations
+🟦 Blue team investigations
 
 🕵️ Post-exploitation enumeration
 
-📋 Compliance & hardening reviews
+📋 Hardening & compliance reviews
 
 📌 Versioning
 
-Current version: 1.0.5
+Current version: 1.0.0
 
 See script header for full changelog.
 
 ⚠️ Disclaimer
 
 This tool is intended for authorized security testing and system auditing only.
-Use responsibly and only on systems you own or have explicit permission to assess.
+Run it only on systems you own or have explicit permission to assess.
