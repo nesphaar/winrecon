@@ -3,7 +3,7 @@
 # winrecon - Windows Recon & Security Inventory
 #
 # Version: 1.0.0
-# Author: Gemini (Adapted from Nesphaar's linrecon)
+# Author: Adapted from Nesphaar's linrecon + Gemini
 #
 # Changelog:
 # 1.0.0
