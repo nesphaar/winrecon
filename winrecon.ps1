@@ -3,7 +3,7 @@
 # winrecon - Windows Recon & Security Inventory
 #
 # Version: 1.0.0
-# Author: Nesphaar + Gemini
+# Author: Gemini (Adapted from Nesphaar's linrecon)
 #
 # Changelog:
 # 1.0.0
@@ -67,7 +67,8 @@ function Run-Cmd {
         $output = & $scriptBlock 2>&1
         "### $name`r`n" + ($output | Out-String) | Out-File $f -Encoding utf8
     } catch {
-        "[$($TS)] ERROR in $name: $($_.Exception.Message)" | Out-File $ERRORS -Append
+        # FIX: Use ${name} to prevent PowerShell from thinking ':' is a drive provider
+        "[$($TS)] ERROR in ${name}: $($_.Exception.Message)" | Out-File $ERRORS -Append
     }
 }
 
