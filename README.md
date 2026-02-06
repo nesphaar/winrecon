@@ -89,7 +89,7 @@ Each finding:
 
 ---
 
-## 📄 Output Structure
+## **📄 Output Structure**
 winrecon__/
 ├── report.txt # Full textual report
 ├── report.html # Interactive HTML report
@@ -103,12 +103,12 @@ winrecon__/
 
 📦 Automatically packaged as: **winrecon__.zip**
 
-## 🚀 Usage
+## **🚀 Usage**
 
-### 1️⃣ Open PowerShell as Administrator
+### **1️⃣ Open PowerShell as Administrator**
 Administrator privileges are **mandatory** for a full assessment.
 
-### 2️⃣ Run the script
+### **2️⃣ Run the script**
 ```powershell
 .\winrecon.ps1
 ```
@@ -123,9 +123,7 @@ Generate TXT and HTML reports
 
 Create a ZIP archive automatically
 
----
-
-🛡️ Design Principles
+## **🛡️ Design Principles**
 
 ✅ Read-only & non-destructive
 
@@ -139,8 +137,6 @@ Create a ZIP archive automatically
 
 ## **📖 Audit & Incident Response friendly output**
 
----
-
 🧪 Intended Use Cases
 
 🔐 Security assessments
@@ -153,16 +149,12 @@ Create a ZIP archive automatically
 
 📋 Hardening & compliance reviews
 
----
-
 ## **📌 Versioning**
 
 Current version: 1.0.0
 See the script header for the full changelog.
 
----
-
-⚠️ Disclaimer
+## **⚠️ Disclaimer**
 
 This tool is intended only for authorized security testing and system auditing.
 
