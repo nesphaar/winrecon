@@ -88,7 +88,8 @@ Each finding:
 - Avoids assumptions when data is unavailable  
 
 ## 📄 Output Structure
-```winrecon__/
+```
+winrecon__/
 ├── report.txt # Full textual report
 ├── report.html # Interactive HTML report
 ├── errors.txt # Non-fatal execution errors
