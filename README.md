@@ -88,7 +88,7 @@ Each finding:
 - Avoids assumptions when data is unavailable  
 
 ## 📄 Output Structure
-winrecon__/
+```winrecon__/
 ├── report.txt # Full textual report
 ├── report.html # Interactive HTML report
 ├── errors.txt # Non-fatal execution errors
@@ -98,6 +98,7 @@ winrecon__/
 ├── 81_av_status.txt
 ├── 140_lotl_inventory.txt
 └── ...
+```
 
 📦 Automatically packaged as: **winrecon__.zip**
 
