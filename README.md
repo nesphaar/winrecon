@@ -1,154 +1,129 @@
-🪟 winrecon — Windows Recon & Security Inventory
+# 🪟 winrecon — Windows Recon & Security Inventory
 
-winrecon is a Windows reconnaissance, inventory, and security assessment tool written in native PowerShell, designed for security audits, incident response, and post-compromise enumeration on modern Windows systems.
+**winrecon** is a Windows reconnaissance, inventory, and security assessment tool written in **native PowerShell**, designed for **security audits**, **incident response**, and **post-compromise enumeration** on modern Windows systems.
 
-It is the Windows counterpart to linrecon, applying the same philosophy:
-📎 evidence-based collection,
-🧠 lightweight heuristics,
-📊 clear reporting.
+It is the Windows counterpart to **linrecon**, applying the same philosophy:
 
-✨ Key Features
+- 📎 Evidence-based collection  
+- 🧠 Lightweight heuristics  
+- 📊 Clear, audit-friendly reporting  
 
-🔍 Comprehensive Windows system reconnaissance
+---
 
-🛡️ Automated security findings with severity levels
+## ✨ Key Features
 
-📄 TXT & HTML reports with indexed evidence
+- 🔍 Comprehensive Windows system reconnaissance  
+- 🛡️ Automated security findings with severity levels  
+- 📄 TXT & HTML reports with indexed evidence  
+- ⚙️ Native PowerShell (no external dependencies)  
+- 📦 Automatic ZIP packaging  
+- 🔐 Administrator privilege validation  
 
-⚙️ Native PowerShell (no external dependencies)
+---
 
-📦 Automatic ZIP packaging
+## 🧠 What winrecon Collects
 
-🔐 Administrator privilege validation
+### 🖥️ System & Hardware
+- Windows version, architecture, and boot time  
+- BIOS and system manufacturer information  
+- Physical memory  
+- Domain membership  
 
-🧠 What winrecon Collects
-🖥️ System & Hardware
+### 💾 Storage
+- Volumes and partitions  
+- File system types  
+- Free space  
 
-Windows version, architecture, boot time
+### 🌐 Networking
+- IP configuration and addresses  
+- Listening TCP ports  
+- Hosts file inspection  
 
-BIOS and system manufacturer info
+### 👥 Users & Access
+- Local users and groups  
+- Logged-on sessions  
+- Account status and metadata  
 
-Physical memory and domain membership
+### ⚙️ Services & Tasks
+- Running Windows services  
+- Enabled scheduled tasks  
 
-💾 Storage
+### 🔐 Security Posture
+- Windows Firewall profiles  
+- Antivirus / Microsoft Defender status (via WMI)  
+- Recently installed hotfixes  
+- RDP exposure  
+- SMBv1 protocol status  
 
-Volumes and partitions
+### 🧰 Living off the Land (LotL)
 
-File system types and free space
+Detection of common dual-use binaries, including:
 
-🌐 Networking
+- `powershell.exe`  
+- `certutil.exe`  
+- `bitsadmin.exe`  
+- `curl.exe`  
+- `nc.exe`, `nmap.exe`, `python.exe`, etc.  
 
-IP configuration and addresses
+---
 
-Listening TCP ports
-
-Hosts file inspection
-
-👥 Users & Access
-
-Local users and groups
-
-Logged-on sessions
-
-Account status and metadata
-
-⚙️ Services & Tasks
-
-Running Windows services
-
-Enabled scheduled tasks
-
-🔐 Security Posture
-
-Windows Firewall profiles
-
-Antivirus / Defender status (via WMI)
-
-Recently installed hotfixes
-
-RDP exposure
-
-SMBv1 protocol status
-
-🧰 Living off the Land (LotL)
-
-Detection of common dual-use binaries:
-
-powershell.exe
-
-certutil.exe
-
-bitsadmin.exe
-
-curl.exe
-
-nc.exe, nmap.exe, python.exe, etc.
-
-🚨 Automated Findings Engine
+## 🚨 Automated Findings Engine
 
 winrecon includes built-in security heuristics that generate findings with severity labels:
 
-🔴 HIGH
+- 🔴 **HIGH**  
+- 🟠 **MEDIUM**  
+- 🔵 **INFO**  
+- 🟢 **OK**  
 
-🟠 MEDIUM
-
-🔵 INFO
-
-🟢 OK
-
-Current automated findings include:
-
-RDP (3389) listening exposure
-
-SMBv1 enabled (legacy & vulnerable)
-
-Missing or unregistered Antivirus
-
-Firewall profile status
+### Current automated findings include:
+- RDP (3389) listening exposure  
+- SMBv1 enabled (legacy & vulnerable)  
+- Missing or unregistered Antivirus  
+- Firewall profile status  
 
 Each finding:
+- Is **evidence-backed**  
+- Links directly to the relevant section in the HTML report  
+- Avoids assumptions when data is unavailable  
 
-Is evidence-backed
+---
 
-Links directly to the relevant section in the HTML report
-
-Avoids assumptions when data is unavailable
-
-📄 Output Structure
-winrecon_<host>_<timestamp>/
-├── report.txt        # Full textual report
-├── report.html       # Interactive HTML report
-├── errors.txt        # Non-fatal execution errors
+## 📄 Output Structure
+winrecon__/
+├── report.txt # Full textual report
+├── report.html # Interactive HTML report
+├── errors.txt # Non-fatal execution errors
 └── data/
-    ├── 00_os_info.txt
-    ├── 44_listening_ports.txt
-    ├── 81_av_status.txt
-    ├── 140_lotl_inventory.txt
-    └── ...
+├── 00_os_info.txt
+├── 44_listening_ports.txt
+├── 81_av_status.txt
+├── 140_lotl_inventory.txt
+└── ...
 
+📦 Automatically packaged as: **winrecon__.zip**
 
-📦 Automatically packaged as:
+## 🚀 Usage
 
-winrecon_<host>_<timestamp>.zip
+### 1️⃣ Open PowerShell as Administrator
+Administrator privileges are **mandatory** for a full assessment.
 
-🚀 Usage
-1️⃣ Open PowerShell as Administrator
-
-This is mandatory for a full assessment.
-
-2️⃣ Run the script
+### 2️⃣ Run the script
+```powershell
 .\winrecon.ps1
+```
 
+**The script will:**
 
-The script will:
-
-Validate admin privileges
+Validate administrator privileges
 
 Collect system data
 
-Generate reports
+Generate TXT and HTML reports
 
 Create a ZIP archive automatically
+
+---
 
 🛡️ Design Principles
 
@@ -162,7 +137,9 @@ Create a ZIP archive automatically
 
 📎 Evidence-first reporting
 
-📖 Audit & IR friendly output
+## **📖 Audit & Incident Response friendly output**
+
+---
 
 🧪 Intended Use Cases
 
@@ -176,13 +153,17 @@ Create a ZIP archive automatically
 
 📋 Hardening & compliance reviews
 
-📌 Versioning
+---
+
+## **📌 Versioning**
 
 Current version: 1.0.0
+See the script header for the full changelog.
 
-See script header for full changelog.
+---
 
 ⚠️ Disclaimer
 
-This tool is intended for authorized security testing and system auditing only.
-Run it only on systems you own or have explicit permission to assess.
+This tool is intended only for authorized security testing and system auditing.
+
+Run it only on systems you own or where you have explicit permission to perform an assessment.
